@@ -10,10 +10,12 @@ public class Pick {
 
     public String pickTitle;
     public List<Product> products;
+    public boolean isGenerated;
 
 
     public Pick(String title) {
         this.pickTitle = title;
-        products=new ArrayList<Product>();
+        products = new ArrayList<Product>();
+        isGenerated = false;
     }
 }

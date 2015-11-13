@@ -1,6 +1,8 @@
 package com.libify.epick;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.libify.epick.R;
@@ -18,7 +21,10 @@ import com.libify.epick.models.Pick;
 import com.libify.epick.models.Product;
 import com.libify.epick.network.IProductsApi;
 import com.libify.epick.utils.IoC.ApplicationCommon;
+import com.squareup.picasso.Picasso;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +51,9 @@ public class ShareScreen extends AppCompatActivity {
 
     @Bind(R.id.ProductDescription)
     TextView productDescription;
+
+    @Bind(R.id.ProductImage)
+    ImageView productImage;
 
     @Bind(R.id.rv)
     RecyclerView rv;
@@ -87,6 +96,10 @@ public class ShareScreen extends AppCompatActivity {
                 public void onResponse(Response<Product> response, Retrofit retrofit) {
                     if(response.isSuccess()){
                         Product product=response.body();
+                        Picasso.with(ShareScreen.this)
+                                .load(product.imageUrl)
+                                .into(productImage);
+                        productTitle.setText(product.productTitle);
                     }
                 }
 
