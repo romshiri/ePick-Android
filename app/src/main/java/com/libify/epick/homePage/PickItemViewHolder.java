@@ -19,13 +19,15 @@ public class PickItemViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void bindData(PickItemViewModel model){
+    public void bindData(final PickItemViewModel model){
 
         ((PickItemView)itemView).bindData(model);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(v.getContext(),PickOverviewActivity.class));
+                Intent intent = new Intent(v.getContext(),PickOverviewActivity.class);
+                intent.putExtra("pickId", model.getPickId());
+                v.getContext().startActivity(intent);
             }
         });
     }

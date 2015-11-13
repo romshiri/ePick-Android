@@ -1,9 +1,7 @@
 package com.libify.epick;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,12 +15,9 @@ import com.libify.epick.storage.PicksStorage;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import com.libify.epick.pickOverview.PickOverviewActivity;
 
 import com.libify.epick.homePage.PickItemViewModel;
 import com.libify.epick.homePage.PicksAdapter;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -67,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        tests();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecycleView(){
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
         picksList.setLayoutManager(layoutManager);
-        picksList.setAdapter(new PicksAdapter(getDataFromTheServer()));
+        picksList.setAdapter(new PicksAdapter(getPersistenceData()));
     }
 
     @Override
@@ -90,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private ArrayList<PickItemViewModel> getDataFromTheServer(){
+    private ArrayList<PickItemViewModel> getPersistenceData(){
+
         ArrayList<PickItemViewModel> results = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();
 
