@@ -18,4 +18,6 @@ public class Pick {
         products = new ArrayList<Product>();
         isGenerated = false;
     }
+
+
 }

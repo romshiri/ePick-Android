@@ -10,6 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.libify.epick.models.Pick;
+import com.libify.epick.models.Product;
 
 import java.util.Collection;
 import java.util.List;

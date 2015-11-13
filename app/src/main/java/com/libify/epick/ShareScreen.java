@@ -49,14 +49,16 @@ public class ShareScreen extends AppCompatActivity {
     @Bind(R.id.ProductTitle)
     TextView productTitle;
 
-    @Bind(R.id.ProductDescription)
-    TextView productDescription;
+    @Bind(R.id.ProductPrice)
+    TextView productPrice;
 
     @Bind(R.id.ProductImage)
     ImageView productImage;
 
     @Bind(R.id.rv)
     RecyclerView rv;
+
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +97,12 @@ public class ShareScreen extends AppCompatActivity {
                 @Override
                 public void onResponse(Response<Product> response, Retrofit retrofit) {
                     if(response.isSuccess()){
-                        Product product=response.body();
+                        product=response.body();
                         Picasso.with(ShareScreen.this)
                                 .load(product.imageUrl)
                                 .into(productImage);
                         productTitle.setText(product.productTitle);
+                        productPrice.setText(product.productPrice+" $");
                     }
                 }
 
@@ -124,7 +127,7 @@ public class ShareScreen extends AppCompatActivity {
     }
 
     private void initAdapter(){
-        PickAdapter adapter = new PickAdapter(picks);
+        PickAdapter adapter = new PickAdapter(picks, product, ShareScreen.this);
         rv.setAdapter(adapter);
     }
 
