@@ -22,16 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".pickOverview.PickOverviewActivity"
-            android:label="@string/title_activity_pick_overview"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.libify.epick.MainActivity" />
-        </activity>
-
-        <activity
             android:name=".ShareScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -56,6 +46,15 @@
 
                 <data android:mimeType="image/*" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".pickOverview.PickOverviewActivity"
+            android:label="@string/title_activity_fuck_shit_up"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.libify.epick.MainActivity" />
         </activity>
     </application>
 
