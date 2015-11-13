@@ -54,12 +54,6 @@
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-
-=======
-        <activity android:name=".ShareScreen.ShareScreen" >
-        </activity>
->>>>>>> c1138ab2e0ab5142623c9c7d774a88ad5ec5310c
     </application>
 
 </manifest>
