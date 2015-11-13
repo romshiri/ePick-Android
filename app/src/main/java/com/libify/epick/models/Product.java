@@ -4,7 +4,7 @@ package com.libify.epick.models;
  * Created by ofeka_000 on 11/13/2015.
  */
 public class Product {
-    
+
     public String imageUrl;
     public String productTitle;
     public String productDesctiption;

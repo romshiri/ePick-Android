@@ -20,6 +20,7 @@
         android:background="@drawable/image_border"
         android:layout_height="@dimen/image_height"
         android:layout_margin="@dimen/image_margin"
+        android:scaleType="fitXY"
         tools:src="@drawable/design_pick_image"
         android:id="@+id/imageLeft"/>
 
@@ -29,6 +30,7 @@
         android:background="@drawable/image_border"
         android:layout_margin="@dimen/image_margin"
         android:id="@+id/imageRight"
+        android:scaleType="fitXY"
         tools:src="@drawable/design_pick_image"
         android:layout_toRightOf="@id/imageLeft"/>
 
@@ -36,6 +38,7 @@
         android:layout_width="@dimen/image_width"
         android:layout_height="@dimen/image_height"
         android:layout_margin="@dimen/image_margin"
+        android:scaleType="fitXY"
         android:background="@drawable/image_border"
         android:id="@+id/imageBottomLeft"
         tools:src="@drawable/design_pick_image"
@@ -46,7 +49,7 @@
         android:layout_height="@dimen/image_height"
         android:layout_margin="@dimen/image_margin"
         android:id="@+id/imageBottomRight"
-        android:padding="3dp"
+        android:scaleType="fitXY"
         android:layout_below="@id/imageRight"
         tools:src="@drawable/design_pick_image"
         android:background="@drawable/image_border"
@@ -70,7 +73,7 @@
             />
         <View
             android:layout_width="wrap_content"
-            android:layout_height="8dp" />
+            android:layout_height="0dp" />
 
     </LinearLayout>
 
