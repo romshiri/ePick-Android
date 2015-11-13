@@ -3,6 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+<<<<<<< HEAD
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+=======
+    <dimen name="image_height">80dp</dimen>
+    <dimen name="image_width">80dp</dimen>
+    <dimen name="image_margin">5dp</dimen>
+>>>>>>> c1138ab2e0ab5142623c9c7d774a88ad5ec5310c
 </resources>
