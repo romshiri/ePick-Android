@@ -14,28 +14,18 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <Button
-                android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp" />
-
             <TextView
-                android:id="@+id/person_name"
+                android:id="@+id/pick_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/person_photo"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/person_age"
+                android:id="@+id/products_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/person_name"
-                android:layout_toRightOf="@+id/person_photo" />
+                android:layout_below="@+id/pick_title" />
 
         </RelativeLayout>
 
