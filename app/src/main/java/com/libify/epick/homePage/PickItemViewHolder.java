@@ -8,6 +8,8 @@ import com.libify.epick.pickOverview.PickOverviewActivity;
 
 public class PickItemViewHolder extends RecyclerView.ViewHolder {
 
+    public static final String PICK_ID = "pickId";
+
     public PickItemViewHolder(View itemView) {
         super(itemView);
 
@@ -26,7 +28,7 @@ public class PickItemViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),PickOverviewActivity.class);
-                intent.putExtra("pickId", model.getPickId());
+                intent.putExtra(PICK_ID, model.getPickId());
                 v.getContext().startActivity(intent);
             }
         });
