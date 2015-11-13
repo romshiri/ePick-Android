@@ -10,14 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.libify.epick.R;
+import com.libify.epick.homePage.PickItemViewHolder;
+import com.libify.epick.models.Pick;
+import com.libify.epick.storage.PicksStorage;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class PickOverviewActivity extends AppCompatActivity {
+
+    private Pick subject;
 
     @Bind(R.id.listings_grid)
     RecyclerView listingsGrid;
@@ -25,30 +30,36 @@ public class PickOverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_overview);
+        setContentView(R.layout.activity_overview_pick);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        String pickId = getIntent().getExtras().getString(PickItemViewHolder.PICK_ID);
+
+        Collection<Pick> picks = PicksStorage.getInstance(this).getAllPicks();
+        for (Pick item : picks){
+            if (item.pickId.equals(pickId)){
+                subject = item;
+            }
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
 
+        setTitle(subject.pickTitle);
+
         listingsGrid.setHasFixedSize(true);
         listingsGrid.setLayoutManager(new GridLayoutManager(this, 2));
-        ArrayList<String> listings = new ArrayList<String>();
-        listings.add("asdf");
-        listings.add("asdf");
-        listings.add("asdf");
-        listings.add("asdf");
-        listings.add("asdf");
-        listingsGrid.setAdapter(new ListingsGridAdapter(this, listings));
+        listingsGrid.setAdapter(new ListingsGridAdapter(this, subject.products));
     }
+
 }
