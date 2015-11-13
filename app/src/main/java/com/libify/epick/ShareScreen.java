@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.libify.epick.R;
+import com.libify.epick.ShareScreenPackage.PickAdapter;
 import com.libify.epick.models.Pick;
 
 import java.util.ArrayList;
@@ -56,6 +57,9 @@ public class ShareScreen extends AppCompatActivity {
                 handleSendText(intent); // Handle text being sent
             }
         }
+
+        initPicks();
+        initAdapter();
     }
 
     void handleSendText(Intent intent) {
@@ -66,11 +70,13 @@ public class ShareScreen extends AppCompatActivity {
         }
     }
 
-    private void getPicks() {
-        picks = new ArrayList<>();
-        picks.add(new Pick("Emma Wilson", "23 years old"));
-        picks.add(new Pick("Lavery Maiss", "25 years old"));
-        picks.add(new Pick("Lillie Watts", "35 years old"));
+    private void initPicks() {
+
+    }
+
+    private void initAdapter(){
+        PickAdapter adapter = new PickAdapter(picks);
+        rv.setAdapter(adapter);
     }
 
 }
