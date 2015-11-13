@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.libify.epick.R;
+
 import java.util.List;
 
 /**
@@ -51,7 +53,7 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
 
         //TODO: fetch
         holder.listingTitle.setText("Nexus 5");
-        holder.listingImage.setImageResource(itemList.get(position).getWonderImage());
+        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.listingImage);
     }
 
     @Override
