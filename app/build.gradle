@@ -46,7 +46,6 @@ dependencies {
     // ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
 
-    // Picasso
+    //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
-
 }

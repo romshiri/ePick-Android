@@ -45,6 +45,7 @@ public class PickItemView extends RelativeLayout{
         initView(context);
     }
 
+
     private void initView(Context context){
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
