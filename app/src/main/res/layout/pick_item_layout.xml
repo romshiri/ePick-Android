@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
+    android:layout_margin="5dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="2dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
+    <ImageView
+        android:layout_width="@dimen/image_width"
+        android:background="@drawable/image_border"
+        android:layout_height="@dimen/image_height"
+        android:layout_margin="@dimen/image_margin"
+        tools:src="@drawable/design_pick_image"
+        android:id="@+id/imageLeft"/>
+
+    <ImageView
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:background="@drawable/image_border"
+        android:layout_margin="@dimen/image_margin"
+        android:id="@+id/imageRight"
+        tools:src="@drawable/design_pick_image"
+        android:layout_toRightOf="@id/imageLeft"/>
+
+    <ImageView
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:layout_margin="@dimen/image_margin"
+        android:background="@drawable/image_border"
+        android:id="@+id/imageBottomLeft"
+        tools:src="@drawable/design_pick_image"
+        android:layout_below="@id/imageRight"/>
+
+    <ImageView
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:layout_margin="@dimen/image_margin"
+        android:id="@+id/imageBottomRight"
+        android:padding="3dp"
+        android:layout_below="@id/imageRight"
+        tools:src="@drawable/design_pick_image"
+        android:background="@drawable/image_border"
+        android:layout_toRightOf="@id/imageBottomLeft"/>
+
+    <LinearLayout
+        android:background="#CC515151"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pickTitle"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            tools:text="What should I buy for my Dad?"
+            android:gravity="center"
+            android:textColor="#e1e1e1"
+            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="8dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
