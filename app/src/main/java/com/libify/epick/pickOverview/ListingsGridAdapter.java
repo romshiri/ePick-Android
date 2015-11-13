@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.libify.epick.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d("RecyclingTest", "onCreateViewHolder method is called");
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_card_listing, null);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

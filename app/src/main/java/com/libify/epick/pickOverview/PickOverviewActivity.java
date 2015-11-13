@@ -11,11 +11,16 @@ import android.view.View;
 
 import com.libify.epick.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class PickOverviewActivity extends AppCompatActivity {
 
-    @Bind(R.id.listings_grid) RecyclerView listingsGrid;
+    @Bind(R.id.listings_grid)
+    RecyclerView listingsGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,16 @@ public class PickOverviewActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        ButterKnife.bind(this);
+
         listingsGrid.setHasFixedSize(true);
         listingsGrid.setLayoutManager(new GridLayoutManager(this, 2));
+        ArrayList<String> listings = new ArrayList<String>();
+        listings.add("asdf");
+        listings.add("asdf");
+        listings.add("asdf");
+        listings.add("asdf");
+        listings.add("asdf");
+        listingsGrid.setAdapter(new ListingsGridAdapter(this, listings));
     }
 }
