@@ -1,5 +1,6 @@
 package com.libify.epick.utils.IoC.modules;
 
+import com.libify.epick.network.IProductsApi;
 import com.squareup.okhttp.OkHttpClient;
 
 import javax.inject.Named;
@@ -15,14 +16,20 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    @Named("serverAdapter")
     Retrofit provideServerRestAdapter(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(new OkHttpClient())
-                .baseUrl("http://roni-pc.searsil.loc:8082/api/icloset/")
+                .baseUrl("http://172.13.0.129:8000/")
                 .addConverterFactory(GsonConverterFactory.create());
 
         return builder.build();
     }
+
+    @Provides
+    IProductsApi provideProductApi(Retrofit adapter){
+        return adapter.create(IProductsApi.class);
+    }
+
+
 
 }
