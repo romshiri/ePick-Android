@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.libify.epick.R;
+import com.libify.epick.models.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -32,10 +33,10 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
 
     }
 
-    private List<String> itemList;
+    private List<Product> itemList;
     private Context context;
 
-    public ListingsGridAdapter(Context context, List<String> itemList) {
+    public ListingsGridAdapter(Context context, List<Product> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
@@ -53,8 +54,8 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
         Log.d("RecyclingTest", "onBindViewHolder method is called");
 
         //TODO: fetch
-        holder.listingTitle.setText("Nexus 5");
-        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.listingImage);
+        holder.listingTitle.setText(itemList.get(position).productTitle);
+        Picasso.with(context).load(itemList.get(position).imageUrl).into(holder.listingImage);
     }
 
     @Override

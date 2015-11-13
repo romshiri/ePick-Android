@@ -26,17 +26,19 @@
             android:id="@+id/ProductTitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/ProductImage"
             android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ProductTitle"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/ProductDescription"
+            android:layout_marginTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ProductImage"
