@@ -11,7 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.libify.epick.models.Pick;
+import com.libify.epick.models.Product;
+import com.libify.epick.storage.PicksStorage;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import com.libify.epick.pickOverview.PickOverviewActivity;
 
 import com.libify.epick.homePage.PickItemViewModel;
@@ -27,6 +32,31 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
+    private void tests(){
+        PicksStorage storage = PicksStorage.getInstance(this);
+
+        Pick p1 = new Pick("NAME");
+        p1.products.add(new Product("url1", "title1", "desc1"));
+        p1.products.add(new Product("url2", "title2", "desc2"));
+        Pick p2 = new Pick("NAME2");
+        p2.products.add(new Product("url3", "title3", "desc3"));
+        p2.products.add(new Product("url4", "title4", "desc4"));
+
+        Collection<Pick> picks = new ArrayList<Pick>();
+
+        picks.add(p1);
+        picks.add(p2);
+
+        storage.addPicks(picks);
+
+        Pick newPick=new Pick("NAME3");
+        newPick.products.add(new Product("url3", "title3", "desc3"));
+        newPick.products.add(new Product("url4", "title4", "desc4"));
+        storage.addPick(newPick);
+
+        Collection<Pick> allPicks = storage.getAllPicks();
+
+    }
     @Bind(R.id.picks_recycleView)
     RecyclerView picksList;
 
