@@ -45,6 +45,8 @@ captures/
 .idea/dictionaries
 .idea/shelf
 
+app/app.iml
+
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
