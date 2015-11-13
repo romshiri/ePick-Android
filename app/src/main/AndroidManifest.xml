@@ -18,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".pickOverview.PickOverviewActivity"
+            android:label="@string/title_activity_pick_overview"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.libify.epick.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
