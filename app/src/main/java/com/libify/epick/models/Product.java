@@ -1,17 +1,24 @@
 package com.libify.epick.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ofeka_000 on 11/13/2015.
  */
 public class Product {
 
+    @SerializedName("picture")
     public String imageUrl;
-    public String productTitle;
-    public String productDesctiption;
 
-    public Product(String image, String title, String Desc) {
+    @SerializedName("title")
+    public String productTitle;
+
+
+    public String productPrice;
+
+    public Product(String image, String title, String price) {
         this.imageUrl = image;
         this.productTitle = title;
-        this.productDesctiption = Desc;
+        this.productPrice = price;
     }
 }
