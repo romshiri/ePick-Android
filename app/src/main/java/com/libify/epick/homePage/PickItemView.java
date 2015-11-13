@@ -2,6 +2,8 @@ package com.libify.epick.homePage;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import com.libify.epick.R;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class PickItemView extends RelativeLayout{
     @Bind(R.id.imageLeft)
@@ -29,21 +32,24 @@ public class PickItemView extends RelativeLayout{
 
     public PickItemView(Context context) {
         super(context);
-        initView();
+        initView(context);
     }
 
     public PickItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView();
+        initView(context);
     }
 
     public PickItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
+        initView(context);
     }
 
-    private void initView(){
-        inflate(getContext(), R.layout.pick_item_layout, null);
+    private void initView(Context context){
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.pick_item_layout, this, true);
+        ButterKnife.bind(this);
     }
 
     public void bindData(PickItemViewModel data){
