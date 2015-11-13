@@ -93,5 +93,6 @@
     </string>
 
     <string name="title_activity_share_screen">ShareScreen</string>
+    <string name="title_activity_create_dilema">CreateDilema</string>
 
 </resources>
