@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.libify.epick.models.Pick;
 import com.libify.epick.models.Product;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class PicksStorage {
 
+    public static final String IS_INIT = "isInit";
     private static PicksStorage instance;
     private SharedPreferences sp;
 
@@ -48,6 +50,7 @@ public class PicksStorage {
     }
 
     public void addPick(Pick pick) {
+
         Collection<Pick> picks = getAllPicks();
         picks.add(pick);
 
@@ -58,6 +61,21 @@ public class PicksStorage {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, value);
         editor.commit();
+    }
+
+    public void initialize(){
+        SharedPreferences.Editor editor = sp.edit();
+
+        boolean isInitilized = sp.getBoolean(IS_INIT, false);
+
+        if(isInitilized){
+            return;
+        }
+
+        addPicks(new ArrayList<Pick>());
+
+        editor.putBoolean(IS_INIT,true);
+        editor.apply();
     }
 
     private String read(String key) {
