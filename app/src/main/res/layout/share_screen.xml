@@ -37,8 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ProductTitle"
-                android:layout_marginTop="5dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:id="@+id/ProductPrice"
@@ -46,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ProductImage"
                 android:layout_marginTop="5dp"
-                android:text="Desc"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -68,10 +66,10 @@
             android:layout_marginTop="20dp" />
 
         <!--<Button-->
-            <!--android:id="@+id/btnAddPick"-->
-            <!--android:layout_below="@+id/rv"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
+        <!--android:id="@+id/btnAddPick"-->
+        <!--android:layout_below="@+id/rv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
     </RelativeLayout>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.libify.epick;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,6 +65,8 @@ public class ShareScreen extends AppCompatActivity {
 //    @Bind(R.id.btnAddPick)
 //    Button btn;
 
+    ProgressDialog progress;
+
 
     Product product;
 
@@ -100,26 +103,31 @@ public class ShareScreen extends AppCompatActivity {
         }
 
         // initPicks();
-        initAdapter();
+
     }
 
     void handleSendText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
             // Update UI to reflect text being shared
+            progress = ProgressDialog.show(this, "Loading",
+                    "Loading Product Details...", true);
             Uri uri = Uri.parse(sharedText);
-            String id = uri.getQueryParameter("id");
+            final String id = uri.getQueryParameter("id");
             // http://172.13.0.129:8000/ProductInfo/371320064687
             productsApi.getProductDescriptor(id).enqueue(new Callback<Product>() {
                 @Override
                 public void onResponse(Response<Product> response, Retrofit retrofit) {
                     if (response.isSuccess()) {
                         product = response.body();
+                        product.ebayId = id;
                         Picasso.with(ShareScreen.this)
                                 .load(product.imageUrl)
                                 .into(productImage);
                         productTitle.setText(product.productTitle);
                         productPrice.setText(product.productPrice + " $");
+                        progress.dismiss();
+                        initAdapter();
                     }
                 }
 
