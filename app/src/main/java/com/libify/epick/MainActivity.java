@@ -94,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<PickItemViewModel> pickVm = new ArrayList<>();
 
+        if(picks == null)
+            return new ArrayList<>();
+
         for (Pick p: picks) {
             pickVm.add(mapper.map(p));
         }
