@@ -9,9 +9,10 @@ public class PickItemViewModel {
     private ArrayList<String> imageUrls;
 
 
-    public PickItemViewModel(String title, ArrayList<String> imageUrls) {
+    public PickItemViewModel(String title, ArrayList<String> imageUrls, String id) {
         this.title = title;
         this.imageUrls = imageUrls;
+        this.pickId = id;
     }
 
     public String getPickId() {

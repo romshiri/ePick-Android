@@ -1,5 +1,6 @@
 package com.libify.epick;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,6 +38,7 @@ public class CreateDilema extends AppCompatActivity {
             public void onClick(View v) {
                 PicksStorage storage = PicksStorage.getInstance(getApplicationContext());
                 storage.addPick(new Pick(textEdit.getText().toString()));
+                setResult(Activity.RESULT_OK, getIntent());
                 finish();
             }
         });
