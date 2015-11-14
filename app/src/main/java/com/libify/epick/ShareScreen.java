@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ import com.libify.epick.network.IProductsApi;
 import com.libify.epick.storage.PicksStorage;
 import com.libify.epick.utils.IoC.ApplicationCommon;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -77,6 +79,7 @@ public class ShareScreen extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add To Pick");
+        toolbar.setTitleTextColor(0xFFFFFFFF);
 
         ApplicationCommon.getComponent().inject(this);
         LinearLayoutManager llm = new LinearLayoutManager(ShareScreen.this);
