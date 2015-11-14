@@ -1,5 +1,6 @@
 package com.libify.epick;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,6 +65,8 @@ public class ShareScreen extends AppCompatActivity {
 //    @Bind(R.id.btnAddPick)
 //    Button btn;
 
+    ProgressDialog progress;
+
 
     Product product;
 
@@ -107,6 +110,8 @@ public class ShareScreen extends AppCompatActivity {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
             // Update UI to reflect text being shared
+            progress = ProgressDialog.show(this, "Loading",
+                    "Loading Product Details...", true);
             Uri uri = Uri.parse(sharedText);
             String id = uri.getQueryParameter("id");
             // http://172.13.0.129:8000/ProductInfo/371320064687
@@ -120,6 +125,7 @@ public class ShareScreen extends AppCompatActivity {
                                 .into(productImage);
                         productTitle.setText(product.productTitle);
                         productPrice.setText(product.productPrice + " $");
+                        progress.dismiss();
                     }
                 }
 
