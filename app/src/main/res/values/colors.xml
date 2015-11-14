@@ -3,5 +3,5 @@
     <color name="colorPrimary">#5b5f71</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#1b3bde</color>
-    <color name="colorLightCardView">#d5d7e0</color>
+    <color name="colorLightCardView">#1A000000</color>
 </resources>
