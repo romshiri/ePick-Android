@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        PicksStorage storage = PicksStorage.getInstance(this);
-        storage.initialize();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        initRecycleView();
     }
 
     private void initRecycleView(){
@@ -103,6 +100,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return pickVm;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        PicksStorage storage = PicksStorage.getInstance(this);
+        storage.initialize();
+
+        initRecycleView();
     }
 
     @Override
