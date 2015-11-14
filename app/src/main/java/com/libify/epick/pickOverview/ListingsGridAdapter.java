@@ -24,11 +24,13 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView listingTitle;
         public ImageView listingImage;
+        public TextView productPercentage;
 
         public ViewHolder(View itemView) {
             super(itemView);
             listingTitle = (TextView) itemView.findViewById(R.id.listing_title);
             listingImage = (ImageView) itemView.findViewById(R.id.listing_image);
+            productPercentage = (TextView) itemView.findViewById(R.id.product_vote_percentage);
         }
 
     }
@@ -56,6 +58,7 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
         //TODO: fetch
         holder.listingTitle.setText(itemList.get(position).productTitle);
         Picasso.with(context).load(itemList.get(position).imageUrl).into(holder.listingImage);
+        holder.productPercentage.setText(itemList.get(position).percentage + '%');
     }
 
     @Override

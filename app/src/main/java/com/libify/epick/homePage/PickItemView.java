@@ -54,10 +54,10 @@ public class PickItemView extends RelativeLayout{
     }
 
     public void bindData(PickItemViewModel data){
-        Picasso.with(getContext()).load(data.getImageUrls().get(0)).error(R.drawable.design_pick_image).into(imageViewLeft);
-        Picasso.with(getContext()).load(data.getImageUrls().get(1)).error(R.drawable.design_pick_image).into(imageViewRight);
-        Picasso.with(getContext()).load(data.getImageUrls().get(2)).error(R.drawable.design_pick_image).into(imageViewBottomLeft);
-        Picasso.with(getContext()).load(data.getImageUrls().get(3)).error(R.drawable.design_pick_image).into(imageViewBottomRight);
+        Picasso.with(getContext()).load(data.getImageUrls().get(0)).error(R.drawable.download).into(imageViewLeft);
+        Picasso.with(getContext()).load(data.getImageUrls().get(1)).error(R.drawable.download).into(imageViewRight);
+        Picasso.with(getContext()).load(data.getImageUrls().get(2)).error(R.drawable.download).into(imageViewBottomLeft);
+        Picasso.with(getContext()).load(data.getImageUrls().get(3)).error(R.drawable.download).into(imageViewBottomRight);
 
         title.setText(data.getTitle());
 
