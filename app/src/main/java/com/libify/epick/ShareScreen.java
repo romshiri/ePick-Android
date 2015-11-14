@@ -113,13 +113,14 @@ public class ShareScreen extends AppCompatActivity {
             progress = ProgressDialog.show(this, "Loading",
                     "Loading Product Details...", true);
             Uri uri = Uri.parse(sharedText);
-            String id = uri.getQueryParameter("id");
+            final String id = uri.getQueryParameter("id");
             // http://172.13.0.129:8000/ProductInfo/371320064687
             productsApi.getProductDescriptor(id).enqueue(new Callback<Product>() {
                 @Override
                 public void onResponse(Response<Product> response, Retrofit retrofit) {
                     if (response.isSuccess()) {
                         product = response.body();
+                        product.ebayId = id;
                         Picasso.with(ShareScreen.this)
                                 .load(product.imageUrl)
                                 .into(productImage);
