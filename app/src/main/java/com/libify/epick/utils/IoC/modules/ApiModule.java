@@ -19,7 +19,7 @@ public class ApiModule {
     Retrofit provideServerRestAdapter(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(new OkHttpClient())
-                .baseUrl("http://172.13.0.129:8000/")
+                .baseUrl("https://ePick.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create());
 
         return builder.build();

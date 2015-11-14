@@ -13,7 +13,7 @@ public class Product {
     @SerializedName("title")
     public String productTitle;
 
-
+    @SerializedName("price")
     public String productPrice;
 
     public Product(String image, String title, String price) {
