@@ -101,10 +101,11 @@ public class PickOverviewActivity extends AppCompatActivity {
                 api.generatePick(subject.pickTitle, new Gson().toJson(productIds)).enqueue(new Callback<Pick>() {
                     @Override
                     public void onResponse(Response<Pick> response, Retrofit retrofit) {
-                        PicksStorage.getInstance(PickOverviewActivity.this).updatePick(subject.pickId, response.body());
-
+                        String oldId = subject.pickId;
                         subject.pickId = response.body().pickId;
                         subject.sharingUrl = response.body().sharingUrl;
+
+                        PicksStorage.getInstance(PickOverviewActivity.this).updatePick(oldId, subject);
                     }
 
                     @Override
