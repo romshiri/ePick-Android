@@ -33,30 +33,24 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     private void tests(){
-        PicksStorage storage = PicksStorage.getInstance(this);
-
-        Pick p1 = new Pick("NAME");
-        p1.products.add(new Product("url1", "title1", "desc1"));
-        p1.products.add(new Product("url2", "title2", "desc2"));
-        Pick p2 = new Pick("NAME2");
-        p2.products.add(new Product("url3", "title3", "desc3"));
-        p2.products.add(new Product("url4", "title4", "desc4"));
-
-        Collection<Pick> picks = new ArrayList<Pick>();
-
-        picks.add(p1);
-        picks.add(p2);
-
-        storage.addPicks(picks);
-
-        Pick newPick=new Pick("NAME3");
-        newPick.products.add(new Product("url3", "title3", "desc3"));
-        newPick.products.add(new Product("url4", "title4", "desc4"));
-        storage.addPick(newPick);
-
-        Collection<Pick> allPicks = storage.getAllPicks();
-
+//        PicksStorage storage = PicksStorage.getInstance(this);
+//
+//        Pick p1 = new Pick("Which one is the best case for LG 4?");
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/xOEAAOSwT6pVn3JS/s-l1600.jpg",
+//                "Shockproof Hybrid Rugged Rubber Impact Hard Case Protective Cover Skin For LG G4", "4.99"));
+//
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/KzcAAOSwT6pVg4Rc/s-l1600.jpg",
+//                "Hybrid Hard Rugged Shockproof Armor Stand Slim Protective Case Cover for LG G4", "3.99"));
+//
+//        p1.products.add(new Product("http://www.buyeasyonline.com/ebay_photo/201504/31465/31465-1.jpg",
+//                "http://www.buyeasyonline.com/ebay_photo/201504/31465/31465-1.jpg", "3.69"));
+//
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/AAoAAOSw9mFWJ0pC/s-l1600.jpg", "http://i.ebayimg.com/images/g/AAoAAOSw9mFWJ0pC/s-l1600.jpg",
+//                "4.40"));
+//
+//        storage.addPick(p1);
     }
+
     @Bind(R.id.picks_recycleView)
     RecyclerView picksList;
 
