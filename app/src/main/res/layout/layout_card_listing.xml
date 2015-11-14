@@ -35,8 +35,7 @@
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:foregroundGravity="bottom"
-            android:layout_alignParentBottom="true"
-            />
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:id="@+id/product_vote_percentage"
