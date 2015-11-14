@@ -129,7 +129,6 @@ public class ShareScreen extends AppCompatActivity {
                         product.ebayId = id;
                         Picasso.with(ShareScreen.this)
                                 .load(product.imageUrl)
-                                .centerInside().resize(200, 200)
                                 .into(productImage);
                         productTitle.setText(product.productTitle);
                         productPrice.setText(product.productPrice + " $");
