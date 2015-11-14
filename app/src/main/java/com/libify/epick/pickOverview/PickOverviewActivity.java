@@ -56,6 +56,8 @@ public class PickOverviewActivity extends AppCompatActivity {
         listingsGrid.setHasFixedSize(true);
         listingsGrid.setLayoutManager(new GridLayoutManager(this, 2));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String pickId = getIntent().getStringExtra(PickItemViewHolder.PICK_ID);
 
         if (pickId != null) {
@@ -66,7 +68,7 @@ public class PickOverviewActivity extends AppCompatActivity {
                 }
             }
         }
-        subject = new Pick("Help me decide what to buy for my mama&products");
+        /*subject = new Pick("Help me decide what to buy for my mama");
         subject.pickId = "666";
         subject.isGenerated = false;
         subject.products = new ArrayList<>();
@@ -77,46 +79,7 @@ public class PickOverviewActivity extends AppCompatActivity {
                 "Necklace 2", "620");
         p1.ebayId = "121492577101";
         subject.products.add(p1);
-        subject.products.add(p2);
-
-        setTitle(subject.pickTitle);
-        if (subject.isGenerated) {
-
-                api.getPickStats(subject.pickId).enqueue(new Callback<List<Product>>() {
-                    @Override
-                    public void onResponse(Response<List<Product>> response, Retrofit retrofit) {
-                        listingsGrid.setAdapter(new ListingsGridAdapter(PickOverviewActivity.this, response.body()));
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-
-                    }
-                });
-            } else {
-                String[] productIds = new String[subject.products.size()];
-                for (int i = 0; i < subject.products.size(); i++){
-                    productIds[i] = subject.products.get(i).ebayId;
-                }
-
-                api.generatePick(subject.pickTitle, new Gson().toJson(productIds)).enqueue(new Callback<Pick>() {
-                    @Override
-                    public void onResponse(Response<Pick> response, Retrofit retrofit) {
-                        String oldId = subject.pickId;
-                        subject.pickId = response.body().pickId;
-                        subject.sharingUrl = response.body().sharingUrl;
-
-                        PicksStorage.getInstance(PickOverviewActivity.this).updatePick(oldId, subject);
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-
-                    }
-                });
-
-                listingsGrid.setAdapter(new ListingsGridAdapter(this, subject.products));
-            }
+        subject.products.add(p2);*/
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -130,7 +93,50 @@ public class PickOverviewActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(sendIntent, "How do you want to share?"));
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        setTitle(subject.pickTitle);
+        if (subject.isGenerated) {
+
+            api.getPickStats(subject.pickId).enqueue(new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Response<List<Product>> response, Retrofit retrofit) {
+                    listingsGrid.setAdapter(new ListingsGridAdapter(PickOverviewActivity.this, response.body()));
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
+        } else {
+            String[] productIds = new String[subject.products.size()];
+            for (int i = 0; i < subject.products.size(); i++) {
+                productIds[i] = subject.products.get(i).ebayId;
+            }
+
+            api.generatePick(subject.pickTitle, new Gson().toJson(productIds)).enqueue(new Callback<Pick>() {
+                @Override
+                public void onResponse(Response<Pick> response, Retrofit retrofit) {
+                    String oldId = subject.pickId;
+                    subject.pickId = response.body().pickId;
+                    subject.sharingUrl = response.body().sharingUrl;
+
+                    PicksStorage.getInstance(PickOverviewActivity.this).updatePick(oldId, subject);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
+
+            listingsGrid.setAdapter(new ListingsGridAdapter(this, subject.products));
+        }
     }
 
 }
