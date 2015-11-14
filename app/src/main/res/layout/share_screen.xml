@@ -19,6 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:layout_below="@+id/toolbar">
 
         <RelativeLayout
@@ -35,17 +36,15 @@
             <ImageView
                 android:id="@+id/ProductImage"
                 android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_below="@+id/ProductTitle"
-                android:layout_marginTop="10dp" />
+                android:layout_below="@+id/ProductTitle" />
 
             <TextView
                 android:id="@+id/ProductPrice"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ProductImage"
-                android:layout_marginTop="10dp"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -55,7 +54,7 @@
             android:layout_height="1dip"
             android:layout_below="@+id/ProductDescriptionLayout"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="#939189" />
 
 
@@ -64,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/lineSeperate"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
 
         <!--<Button-->
         <!--android:id="@+id/btnAddPick"-->

@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.libify.epick.R;
@@ -32,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -143,7 +147,9 @@ public class ShareScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        PickAdapter adapter = new PickAdapter((List<Pick>) picks, product, ShareScreen.this);
+        ArrayList<Pick> reversedList = new ArrayList<Pick>(picks);
+        Collections.reverse(reversedList);
+        PickAdapter adapter = new PickAdapter((List<Pick>) reversedList, product, ShareScreen.this);
         rv.setAdapter(adapter);
     }
 
