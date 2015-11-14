@@ -103,7 +103,7 @@ public class ShareScreen extends AppCompatActivity {
         }
 
         // initPicks();
-        initAdapter();
+
     }
 
     void handleSendText(Intent intent) {
@@ -127,6 +127,7 @@ public class ShareScreen extends AppCompatActivity {
                         productTitle.setText(product.productTitle);
                         productPrice.setText(product.productPrice + " $");
                         progress.dismiss();
+                        initAdapter();
                     }
                 }
 
