@@ -57,6 +57,28 @@ public class PicksStorage {
         write(KEY_PICKS, new Gson().toJson(picks));
     }
 
+    public void updatePick(String oldId, Pick newPick){
+        Collection<Pick> picks = getAllPicks();
+        Pick pickToRemove = null;
+        for (Pick p : picks) {
+            if (p.pickId.equals(oldId)){
+                pickToRemove = p;
+            }
+        }
+        if (pickToRemove != null){
+            picks.remove(pickToRemove);
+            picks.add(newPick);
+        }
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.commit();
+        initialize();
+        for (Pick item : picks) {
+            addPick(item);
+        }
+    }
+
     private void write(String key, String value) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, value);

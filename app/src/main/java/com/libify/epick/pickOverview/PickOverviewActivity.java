@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.libify.epick.R;
 import com.libify.epick.homePage.PickItemViewHolder;
 import com.libify.epick.models.Pick;
@@ -63,9 +65,18 @@ public class PickOverviewActivity extends AppCompatActivity {
                 }
             }
         }
-        subject = new Pick("Shalom Naim Meod");
-        subject.pickId = "1";
-        subject.isGenerated = true;
+        /*subject = new Pick("Help me decide what to buy for my mama&products");
+        subject.pickId = "666";
+        subject.isGenerated = false;
+        subject.products = new ArrayList<>();
+        Product p1 = new Product("http://i.ebayimg.com/images/g/nnIAAOSw9mFWHS9e/s-l1600.jpg",
+                "Necklace 1", "50");
+        p1.ebayId = "121786800664";
+        Product p2 = new Product("http://i.ebayimg.com/images/g/L00AAOSwuMFUbTL9/s-l1600.jpg",
+                "Necklace 2", "620");
+        p1.ebayId = "121492577101";
+        subject.products.add(p1);
+        subject.products.add(p2);*/
 
         setTitle(subject.pickTitle);
         if (subject.isGenerated) {
@@ -86,6 +97,21 @@ public class PickOverviewActivity extends AppCompatActivity {
                 for (int i = 0; i < subject.products.size(); i++){
                     productIds[i] = subject.products.get(i).ebayId;
                 }
+
+                api.generatePick(subject.pickTitle, new Gson().toJson(productIds)).enqueue(new Callback<Pick>() {
+                    @Override
+                    public void onResponse(Response<Pick> response, Retrofit retrofit) {
+                        PicksStorage.getInstance(PickOverviewActivity.this).updatePick(subject.pickId, response.body());
+
+                        subject.pickId = response.body().pickId;
+                        subject.sharingUrl = response.body().sharingUrl;
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
 
                 listingsGrid.setAdapter(new ListingsGridAdapter(this, subject.products));
             }

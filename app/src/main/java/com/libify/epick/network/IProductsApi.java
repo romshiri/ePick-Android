@@ -25,5 +25,5 @@ public interface IProductsApi {
     Call<List<Product>> getPickStats(@Path("pickId") String pickId);
     @FormUrlEncoded
     @POST("/CreatePick")
-    Call<Pick> generatePick(@Field("question") String title, @Field("products") String[] products);
+    Call<Pick> generatePick(@Field("question") String title, @Field("products") String products);
 }
