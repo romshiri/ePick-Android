@@ -123,10 +123,23 @@ public class PickOverviewActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Response<Pick> response, Retrofit retrofit) {
                     String oldId = subject.pickId;
+                    subject.isGenerated = true;
                     subject.pickId = response.body().pickId;
                     subject.sharingUrl = response.body().sharingUrl;
 
                     PicksStorage.getInstance(PickOverviewActivity.this).updatePick(oldId, subject);
+
+                    api.getPickStats(subject.pickId).enqueue(new Callback<List<Product>>() {
+                        @Override
+                        public void onResponse(Response<List<Product>> response, Retrofit retrofit) {
+                            listingsGrid.setAdapter(new ListingsGridAdapter(PickOverviewActivity.this, response.body()));
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
                 }
 
                 @Override
@@ -135,7 +148,6 @@ public class PickOverviewActivity extends AppCompatActivity {
                 }
             });
 
-            listingsGrid.setAdapter(new ListingsGridAdapter(this, subject.products));
         }
     }
 
