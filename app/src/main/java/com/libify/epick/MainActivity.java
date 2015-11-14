@@ -1,22 +1,18 @@
 package com.libify.epick;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
+import com.libify.epick.homePage.PickItemView;
+import com.libify.epick.homePage.PickViewModelMapper;
 import com.libify.epick.models.Pick;
 import com.libify.epick.models.Product;
 import com.libify.epick.storage.PicksStorage;
@@ -32,6 +28,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 1;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CreateDilema.class));
+                startActivityForResult(new Intent(getApplicationContext(), CreateDilema.class), REQUEST_CODE);
             }
         });
 
@@ -97,24 +94,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<PickItemViewModel> getPersistenceData(){
+        PicksStorage storage = PicksStorage.getInstance(this);
+        Collection<Pick> picks =  storage.getAllPicks();
+        PickViewModelMapper mapper = new PickViewModelMapper();
 
-        ArrayList<PickItemViewModel> results = new ArrayList<>();
-        ArrayList<String> images = new ArrayList<>();
+        ArrayList<PickItemViewModel> pickVm = new ArrayList<>();
 
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
+        for (Pick p: picks) {
+            pickVm.add(mapper.map(p));
+        }
 
-        results.add(new PickItemViewModel("What should I buy?", images));
-        results.add(new PickItemViewModel("What should I buy to my Dad?", images));
-        results.add(new PickItemViewModel("Which is better?", images));
-        results.add(new PickItemViewModel("What do you I should buy for my Parents?", images));
-        results.add(new PickItemViewModel("My girlfriend love gadgets, what should I buy?", images));
-        results.add(new PickItemViewModel("What should I buy?", images));
-
-        return results;
-
+        return pickVm;
     }
 
     @Override
@@ -130,5 +120,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                initRecycleView();
+            }
+        }
     }
 }
