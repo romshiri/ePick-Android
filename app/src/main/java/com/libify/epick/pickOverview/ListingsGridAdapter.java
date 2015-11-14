@@ -58,7 +58,7 @@ public class ListingsGridAdapter extends RecyclerView.Adapter<ListingsGridAdapte
         //TODO: fetch
         holder.listingTitle.setText(itemList.get(position).productTitle);
         Picasso.with(context).load(itemList.get(position).imageUrl).into(holder.listingImage);
-        holder.productPercentage.setText(itemList.get(position).percentage + '%');
+        holder.productPercentage.setText(String.valueOf(itemList.get(position).percentage) + '%');
     }
 
     @Override
