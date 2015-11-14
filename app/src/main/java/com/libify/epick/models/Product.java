@@ -16,6 +16,15 @@ public class Product {
     @SerializedName("price")
     public String productPrice;
 
+    public String ebayId;
+
+    @SerializedName("votes")
+    public int votes;
+
+    @SerializedName("percents")
+    public int percentage;
+
+
     public Product(String image, String title, String price) {
         this.imageUrl = image;
         this.productTitle = title;
