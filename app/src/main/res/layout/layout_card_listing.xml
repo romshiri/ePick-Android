@@ -24,9 +24,9 @@
             android:textAlignment="textStart"
             android:gravity="start"
             android:padding="16dp"
-            android:background="?attr/colorPrimaryDark"
+            android:background="?attr/colorAccent"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="49dp"
             android:textSize="16sp"
             android:textColor="@android:color/white"
@@ -37,10 +37,9 @@
         <TextView
             android:id="@+id/product_vote_percentage"
             android:textAlignment="textStart"
-            android:gravity="start"
+            android:gravity="end"
             android:padding="16dp"
             android:background="?attr/colorPrimaryDark"
-            android:layout_alignParentLeft="true"
             android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="49dp"
@@ -48,11 +47,14 @@
             android:textColor="@android:color/white"
             android:foregroundGravity="bottom"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:padding="16dp"
+            android:layout_alignParentBottom="true"
             android:src="@drawable/ic_poll_grey600_48dp"
             android:layout_alignRight="@id/product_vote_percentage"/>
 

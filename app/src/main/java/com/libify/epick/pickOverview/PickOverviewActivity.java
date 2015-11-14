@@ -1,5 +1,6 @@
 package com.libify.epick.pickOverview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -65,7 +66,7 @@ public class PickOverviewActivity extends AppCompatActivity {
                 }
             }
         }
-        /*subject = new Pick("Help me decide what to buy for my mama&products");
+        subject = new Pick("Help me decide what to buy for my mama&products");
         subject.pickId = "666";
         subject.isGenerated = false;
         subject.products = new ArrayList<>();
@@ -76,7 +77,7 @@ public class PickOverviewActivity extends AppCompatActivity {
                 "Necklace 2", "620");
         p1.ebayId = "121492577101";
         subject.products.add(p1);
-        subject.products.add(p2);*/
+        subject.products.add(p2);
 
         setTitle(subject.pickTitle);
         if (subject.isGenerated) {
@@ -122,8 +123,11 @@ public class PickOverviewActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, subject.pickTitle + "\n" + subject.sharingUrl);
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "How do you want to share?"));
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
