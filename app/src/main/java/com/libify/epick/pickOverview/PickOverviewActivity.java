@@ -68,7 +68,7 @@ public class PickOverviewActivity extends AppCompatActivity {
                 }
             }
         }
-        /*subject = new Pick("Help me decide what to buy for my mama&products");
+        /*subject = new Pick("Help me decide what to buy for my mama");
         subject.pickId = "666";
         subject.isGenerated = false;
         subject.products = new ArrayList<>();
