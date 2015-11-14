@@ -17,51 +17,61 @@
 
 
     <RelativeLayout
-        android:id="@+id/ProductDescriptionLayout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/ProductTitle"
+        <RelativeLayout
+            android:id="@+id/ProductDescriptionLayout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ProductImage"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ProductTitle"
-            android:src="@mipmap/ic_launcher" />
+            <TextView
+                android:id="@+id/ProductTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/ProductPrice"
-            android:layout_marginTop="5dp"
+            <ImageView
+                android:id="@+id/ProductImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ProductTitle"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/ProductPrice"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ProductImage"
+                android:layout_marginTop="5dp"
+                android:text="Desc"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/lineSeperate"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_below="@+id/ProductImage"
-            android:text="Desc" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:id="@+id/lineSeperate"
-        android:layout_below="@+id/ProductDescriptionLayout"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="10dp"
-        android:background="#939189" />
+            android:layout_height="1dip"
+            android:layout_below="@+id/ProductDescriptionLayout"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:background="#939189" />
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
-            android:layout_below="@+id/lineSeperate"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lineSeperate"
+            android:layout_marginTop="20dp" />
 
+        <!--<Button-->
+            <!--android:id="@+id/btnAddPick"-->
+            <!--android:layout_below="@+id/rv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-
+    </RelativeLayout>
 </RelativeLayout>

@@ -1,22 +1,18 @@
 package com.libify.epick;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
+import com.libify.epick.homePage.PickItemView;
+import com.libify.epick.homePage.PickViewModelMapper;
 import com.libify.epick.models.Pick;
 import com.libify.epick.models.Product;
 import com.libify.epick.storage.PicksStorage;
@@ -32,34 +28,29 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 1;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
     private void tests(){
-        PicksStorage storage = PicksStorage.getInstance(this);
-
-        Pick p1 = new Pick("NAME");
-        p1.products.add(new Product("url1", "title1", "desc1"));
-        p1.products.add(new Product("url2", "title2", "desc2"));
-        Pick p2 = new Pick("NAME2");
-        p2.products.add(new Product("url3", "title3", "desc3"));
-        p2.products.add(new Product("url4", "title4", "desc4"));
-
-        Collection<Pick> picks = new ArrayList<Pick>();
-
-        picks.add(p1);
-        picks.add(p2);
-
-        storage.addPicks(picks);
-
-        Pick newPick=new Pick("NAME3");
-        newPick.products.add(new Product("url3", "title3", "desc3"));
-        newPick.products.add(new Product("url4", "title4", "desc4"));
-        storage.addPick(newPick);
-
-        Collection<Pick> allPicks = storage.getAllPicks();
-
+//        PicksStorage storage = PicksStorage.getInstance(this);
+//
+//        Pick p1 = new Pick("Which one is the best case for LG 4?");
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/xOEAAOSwT6pVn3JS/s-l1600.jpg",
+//                "Shockproof Hybrid Rugged Rubber Impact Hard Case Protective Cover Skin For LG G4", "4.99"));
+//
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/KzcAAOSwT6pVg4Rc/s-l1600.jpg",
+//                "Hybrid Hard Rugged Shockproof Armor Stand Slim Protective Case Cover for LG G4", "3.99"));
+//
+//        p1.products.add(new Product("http://www.buyeasyonline.com/ebay_photo/201504/31465/31465-1.jpg",
+//                "http://www.buyeasyonline.com/ebay_photo/201504/31465/31465-1.jpg", "3.69"));
+//
+//        p1.products.add(new Product("http://i.ebayimg.com/images/g/AAoAAOSw9mFWJ0pC/s-l1600.jpg", "http://i.ebayimg.com/images/g/AAoAAOSw9mFWJ0pC/s-l1600.jpg",
+//                "4.40"));
+//
+//        storage.addPick(p1);
     }
+
     @Bind(R.id.picks_recycleView)
     RecyclerView picksList;
 
@@ -76,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CreateDilema.class));
+                startActivityForResult(new Intent(getApplicationContext(), CreateDilema.class), REQUEST_CODE);
             }
         });
 
@@ -97,24 +88,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<PickItemViewModel> getPersistenceData(){
+        PicksStorage storage = PicksStorage.getInstance(this);
+        Collection<Pick> picks =  storage.getAllPicks();
+        PickViewModelMapper mapper = new PickViewModelMapper();
 
-        ArrayList<PickItemViewModel> results = new ArrayList<>();
-        ArrayList<String> images = new ArrayList<>();
+        ArrayList<PickItemViewModel> pickVm = new ArrayList<>();
 
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
-        images.add("https://lh4.googleusercontent.com/-wC54Rcr7Hq8/AAAAAAAAAAI/AAAAAAAAAAA/p8lQdwq1v6Y/s0-c-k-no-ns/photo.jpg");
+        if(picks == null)
+            return new ArrayList<>();
 
-        results.add(new PickItemViewModel("What should I buy?", images));
-        results.add(new PickItemViewModel("What should I buy to my Dad?", images));
-        results.add(new PickItemViewModel("Which is better?", images));
-        results.add(new PickItemViewModel("What do you I should buy for my Parents?", images));
-        results.add(new PickItemViewModel("My girlfriend love gadgets, what should I buy?", images));
-        results.add(new PickItemViewModel("What should I buy?", images));
+        for (Pick p: picks) {
+            pickVm.add(mapper.map(p));
+        }
 
-        return results;
-
+        return pickVm;
     }
 
     @Override
@@ -130,5 +117,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                initRecycleView();
+            }
+        }
     }
 }
