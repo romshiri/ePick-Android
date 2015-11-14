@@ -35,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -146,7 +147,9 @@ public class ShareScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        PickAdapter adapter = new PickAdapter((List<Pick>) picks, product, ShareScreen.this);
+        ArrayList<Pick> reversedList = new ArrayList<Pick>(picks);
+        Collections.reverse(reversedList);
+        PickAdapter adapter = new PickAdapter((List<Pick>) reversedList, product, ShareScreen.this);
         rv.setAdapter(adapter);
     }
 
